@@ -64,6 +64,10 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    public void showDailySpecial(View view) {
+        startActivity(new Intent(this, ShowDailySpecialActivity.class));
+    }
+
     /*
      * Suggest dinner for tonight.
      * This method is invoked by the button click action of the food prefs menu.

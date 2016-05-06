@@ -34,7 +34,7 @@ import static android.view.View.VISIBLE;
 public class OrderDinnerActivity extends Activity {
 
     private static final String ANALYTICS_CATEGORY = "Shopping steps";
-    String selectedDinnerExtrasKey = String.valueOf(R.string.selected_dinner);
+    public static final String selectedDinnerExtrasKey = String.valueOf(R.string.selected_dinner);
 
     private String dinner, dinnerId;
     private Product product;

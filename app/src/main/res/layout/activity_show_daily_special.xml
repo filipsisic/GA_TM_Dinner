@@ -14,8 +14,7 @@
                   android:paddingBottom="5dp"
                   android:paddingLeft="10dp"
                   android:paddingRight="10dp"
-                  android:paddingTop="20dp"
-        >
+                  android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/textView_info_heading"
@@ -32,13 +31,13 @@
             android:minHeight="60dp"
             android:outlineProvider="background"
             android:padding="10dp"
-            android:text="heading goes here"
+            android:text="Today's special"
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textView_info"
+            android:id="@+id/textView_daily_special"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -49,10 +48,18 @@
             android:minHeight="150dp"
             android:outlineProvider="background"
             android:padding="10dp"
-            android:text="info goes here"
+            android:text="Fried egg with hit kat rashers"
             android:textSize="24dp"
             android:textStyle="bold"/>
 
+        <Button
+            android:id="@+id/show_daily_special_button"
+            style="@style/button_solid"
+            android:layout_marginTop="30dp"
+            android:onClick="orderOnline"
+            android:text="Order online" />
+
     </LinearLayout>
+
 
 </ScrollView>

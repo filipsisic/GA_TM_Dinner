@@ -39,7 +39,7 @@ public class ShowAllDinnersActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         Intent intent = new Intent(this, OrderDinnerActivity.class);
-        intent.putExtra(String.valueOf(R.string.selected_dinner), (String) l.getItemAtPosition(position));
+        intent.putExtra(OrderDinnerActivity.selectedDinnerExtrasKey, (String) l.getItemAtPosition(position));
         startActivity(intent);
     }
 }

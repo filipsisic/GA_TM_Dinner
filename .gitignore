@@ -2,5 +2,8 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/modules.xml
+/app/app.iml
 .DS_Store
 /build
+/GA_TM_Dinner.iml

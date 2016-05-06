@@ -28,6 +28,13 @@
             android:onClick="showDinnerList"
             android:text="Show all dinners" />
 
+        <Button
+            android:id="@+id/show_daily_special_button"
+            style="@style/button_solid"
+            android:layout_marginTop="30dp"
+            android:onClick="showDailySpecial"
+            android:text="Show daily special" />
+
     </LinearLayout>
 </ScrollView>
 
