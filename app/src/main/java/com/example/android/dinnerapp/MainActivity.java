@@ -27,6 +27,7 @@ import android.widget.PopupMenu;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.DataLayer;
 import com.google.android.gms.tagmanager.TagManager;
 
 import java.util.concurrent.TimeUnit;
@@ -68,7 +69,6 @@ public class MainActivity extends Activity {
      * Menu items are defined in menus/food_prefs_menu.xml
      */
     public void showFoodPrefsMenu(View view) {
-        // Utility.showMyToast("I will show you a menu", this);
         android.widget.PopupMenu popup = new android.widget.PopupMenu(this, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.food_prefs_menu, popup.getMenu());
@@ -92,7 +92,21 @@ public class MainActivity extends Activity {
     }
 
     public void showDailySpecial(View view) {
-        startActivity(new Intent(this, ShowDailySpecialActivity.class));
+        android.widget.PopupMenu popup = new android.widget.PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.food_prefs_menu, popup.getMenu());
+
+        // Set the action of the menu
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                putFoodPrefInDataLayer(item);
+                startActivity(new Intent(MainActivity.this, ShowDailySpecialActivity.class));
+                return true;
+            }
+        });
+        // Show the popup menu
+        popup.show();
     }
 
     /*
@@ -116,6 +130,28 @@ public class MainActivity extends Activity {
         startActivity(dinnerIntent);
 
         return dinnerChoice;
+    }
+
+    private void putFoodPrefInDataLayer(MenuItem item) {
+        DataLayer dataLayer = tagManager.getDataLayer();
+        String value;
+        switch (item.getItemId()) {
+            case R.id.vegan_pref:
+                value = "vegan";
+                break;
+            case R.id.vegetarian_pref:
+                value = "vegetarian";
+                break;
+            case R.id.fish_pref:
+                value = "fish";
+                break;
+            case R.id.meat_pref:
+                value = "meat";
+                break;
+            default:
+                value = "unrestricted";
+        }
+        dataLayer.push("food_pref", value);
     }
 }
 
