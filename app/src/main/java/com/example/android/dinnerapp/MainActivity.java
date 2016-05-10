@@ -24,8 +24,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.TagManager;
+
+import java.util.concurrent.TimeUnit;
+
 
 public class MainActivity extends Activity {
+
+    TagManager tagManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,24 @@ public class MainActivity extends Activity {
 
         // Make sure that Analytics tracking has started
         ((App) getApplication()).startTracking();
+        loadGTMContainer();
+    }
+
+    private void loadGTMContainer(){
+        tagManager = ((App) getApplication()).getTagManager();
+        tagManager.setVerboseLoggingEnabled(true);
+
+        PendingResult pendingResult = tagManager.loadContainerPreferFresh("GTM-5HMX68", R.raw.gtm_default);
+        pendingResult.setResultCallback(new ResultCallback<ContainerHolder>() {
+            @Override
+            public void onResult(ContainerHolder containerHolder) {
+                if (!containerHolder.getStatus().isSuccess()) {
+                    return;
+                }
+                containerHolder.refresh();
+                ((App) getApplication()).setContainerHolder(containerHolder);
+            }
+        }, 2, TimeUnit.SECONDS);
     }
 
     /*
