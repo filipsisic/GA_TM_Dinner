@@ -102,6 +102,8 @@ public class MainActivity extends Activity {
             public boolean onMenuItemClick(MenuItem item) {
                 putFoodPrefInDataLayer(item);
                 startActivity(new Intent(MainActivity.this, ShowDailySpecialActivity.class));
+                DataLayer dataLayer = tagManager.getDataLayer();
+                dataLayer.pushEvent("openScreen", DataLayer.mapOf("screen-name", "Show Daily Special"));
                 return true;
             }
         });
