@@ -30,6 +30,8 @@ public class ShowDailySpecialActivity extends Activity {
     public void updateDailySpecial() {
         ContainerHolder holder = ((App) getApplication()).getContainerHolder();
         String value = holder.getContainer().getString("daily-special");
+        String test = holder.getContainer().getString("test-variable");
         dailySpecial.setText(value);
+        dailySpecial.append("\n" + test);
     }
 }
